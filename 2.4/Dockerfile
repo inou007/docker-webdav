@@ -64,4 +64,5 @@ RUN set -ex; \
 #COPY 2.4/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 EXPOSE 8080/tcp 8443/tcp
 #ENTRYPOINT [ "docker-entrypoint.sh" ]
-CMD [ "httpd-foreground" ]
+#CMD [ "httpd-foreground" ]
+CMD [ "/bin/sh" ]
