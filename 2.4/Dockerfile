@@ -5,7 +5,7 @@ FROM httpd:alpine
 # WORKDIR "$HTTPD_PREFIX"
 
 # Copy in our configuration files.
-COPY conf/ conf/
+COPY conf/ /conf/
 
 RUN set -ex; \
     # Create empty default DocumentRoot.
