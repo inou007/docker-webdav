@@ -48,7 +48,7 @@ RUN set -ex; \
     ln -s ../sites-available/default.conf "conf/sites-enabled"; \
     # Install openssl if we need to generate a self-signed certificate.
     apk add --no-cache openssl; \
-
+    \
     # Commands from docker-entrypoint.sh
     sed -e "s|AuthType .*|AuthType Digest|" -i "/usr/local/apache2/conf/conf-available/dav.conf"; \
     touch "/user.passwd"; \
@@ -56,7 +56,10 @@ RUN set -ex; \
     printf '%s\n' "hpco:WebDAV:$HASH" > /user.passwd; \
     [ ! -d "/var/lib/dav/data" ] && mkdir -p "/var/lib/dav/data"; \
     [ ! -e "/var/lib/dav/DavLock" ] && touch "/var/lib/dav/DavLock"; \
-    chown -R www-data:www-data "/var/lib/dav"
+    chown -R www-data:www-data "/var/lib/dav"; \
+    \
+    # Change port
+    echo "Listen 8080" >> /usr/local/apache2/ports.conf
 
 #COPY 2.4/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 EXPOSE 8080/tcp 8443/tcp
