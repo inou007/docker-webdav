@@ -5,7 +5,7 @@ FROM httpd:alpine
 # WORKDIR "$HTTPD_PREFIX"
 
 # Copy in our configuration files.
-COPY 2.4/conf/ /conf/
+COPY 2.4/conf/ conf/
 
 RUN set -ex; \
     # Create empty default DocumentRoot.
@@ -50,10 +50,10 @@ RUN set -ex; \
     apk add --no-cache openssl; \
 
     # Commands from docker-entrypoint.sh
-    sed -e "s|AuthType .*|AuthType Digest|" -i "/conf/conf-available/dav.conf"; \
+    sed -e "s|AuthType .*|AuthType Digest|" -i "/usr/local/apache2/conf/conf-available/dav.conf"; \
     touch "/user.passwd"; \
-    HASH="`printf '%s' "hpco:$REALM:ILoveHPCI" | md5sum | awk '{print $1}'`"; \
-    printf '%s\n' "$USERNAME:$REALM:$HASH" > /user.passwd; \
+    HASH="`printf '%s' "hpco:WebDAV:ILoveHPCI" | md5sum | awk '{print $1}'`"; \
+    printf '%s\n' "hpco:WebDAV:$HASH" > /user.passwd; \
     [ ! -d "/var/lib/dav/data" ] && mkdir -p "/var/lib/dav/data"; \
     [ ! -e "/var/lib/dav/DavLock" ] && touch "/var/lib/dav/DavLock"; \
     chown -R www-data:www-data "/var/lib/dav"
