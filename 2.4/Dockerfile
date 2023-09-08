@@ -5,7 +5,7 @@ FROM httpd:alpine
 # WORKDIR "$HTTPD_PREFIX"
 
 # Copy in our configuration files.
-COPY conf/ /conf/
+COPY 2.4/conf/ conf/
 
 RUN set -ex; \
     # Create empty default DocumentRoot.
@@ -49,7 +49,7 @@ RUN set -ex; \
     # Install openssl if we need to generate a self-signed certificate.
     apk add --no-cache openssl
 
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+COPY 2.4/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 EXPOSE 80/tcp 443/tcp
 ENTRYPOINT [ "docker-entrypoint.sh" ]
 CMD [ "httpd-foreground" ]
