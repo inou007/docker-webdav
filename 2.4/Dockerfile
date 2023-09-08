@@ -59,8 +59,7 @@ RUN set -ex; \
     chown -R www-data:www-data "/var/lib/dav"; \
     \
     # Change port
-    sed -E -i "s/Listen (.*)80/Listen \18080/" /usr/local/apache2/conf/httpd.conf; \
-    sed -E -i "s/Listen (.*)80/Listen \18080/" /usr/local/apache2/conf/ports.conf
+    sed -E -i "s/Listen (.*)80/Listen \18080/" /usr/local/apache2/conf/httpd.conf
 
 #COPY 2.4/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 EXPOSE 8080/tcp 8443/tcp
