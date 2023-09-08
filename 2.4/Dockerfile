@@ -59,6 +59,6 @@ RUN set -ex; \
     chown -R www-data:www-data "/var/lib/dav"
 
 #COPY 2.4/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-EXPOSE 8080/tcp
+EXPOSE 80/tcp 443/tcp
 #ENTRYPOINT [ "docker-entrypoint.sh" ]
 CMD [ "httpd-foreground" ]
