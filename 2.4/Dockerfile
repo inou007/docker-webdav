@@ -54,8 +54,8 @@ RUN set -ex; \
     touch "/user.passwd"; \
     HASH="`printf '%s' "hpco:WebDAV:ILoveHPCI" | md5sum | awk '{print $1}'`"; \
     printf '%s\n' "hpco:WebDAV:$HASH" > /user.passwd; \
-    [ ! -d "/var/lib/dav/data" ] && mkdir -p "/var/lib/dav/data"; \
-    [ ! -e "/var/lib/dav/DavLock" ] && touch "/var/lib/dav/DavLock"; \
+    mkdir -p "/var/lib/dav/data"; \
+    touch "/var/lib/dav/DavLock"; \
     chown -R www-data:www-data "/var/lib/dav"; \
     \
     # Change port
