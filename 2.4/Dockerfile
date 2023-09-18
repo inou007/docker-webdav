@@ -54,8 +54,6 @@ RUN set -ex; \
     touch "/user.passwd"; \
     HASH="`printf '%s' "hpco:WebDAV:ILoveHPCI" | md5sum | awk '{print $1}'`"; \
     printf '%s\n' "hpco:WebDAV:$HASH" > /user.passwd; \
-    #mkdir /usr/local/apache2/var/; \
-    #printf '%s\n' "hpco:WebDAV:$HASH" >  /usr/local/apache2/var/user.passwd; \
     mkdir -p "/var/lib/dav/data"; \
     touch "/var/lib/dav/DavLock"; \
     chown -R www-data:www-data "/var/lib/dav"; \
